@@ -251,10 +251,10 @@ def create_app(test_config=None):
 
             if category['type'] == 'click':
                 available_questions = Question.query.filter(
-                    Question.id.notin_((previous_questions))).all()
+                    Question.id.notin_(previous_questions)).all()
             else:
                 available_questions = Question.query.filter_by(
-                    category=category['id']).filter(Question.id.notin_((previous_questions))).all()
+                    category=category['id']).filter(Question.id.notin_(previous_questions)).all()
 
             new_question = available_questions[random.randrange(
                 0, len(available_questions))].format() if len(available_questions) > 0 else None
